@@ -9,6 +9,17 @@ public class TrainControllerImpl implements TrainController {
 	private int speedLimit = 0;
 	private boolean winterOperation = false;
 
+	public TrainControllerImpl() {
+		Timer t = new Timer( );
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				followSpeed();
+			}
+		}, 1000,5000);
+	}
+
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
@@ -56,10 +67,5 @@ public class TrainControllerImpl implements TrainController {
 
 	public void setWinterOperation (boolean _winterOperation) {
 		winterOperation = _winterOperation;
-	}
-
-	@Override
-	public void tick() {
-		followSpeed();
 	}
 }
