@@ -22,6 +22,12 @@
     </modules>
 
 	<dependencies>
+	<dependency>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.7</version>
+		<scope>test</scope>
+	</dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
