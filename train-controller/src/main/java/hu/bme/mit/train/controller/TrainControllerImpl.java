@@ -1,5 +1,7 @@
 package hu.bme.mit.train.controller;
 
+import java.util.concurrent.ScheduledFuture;
+
 import hu.bme.mit.train.interfaces.TrainController;
 
 public class TrainControllerImpl implements TrainController {
@@ -8,6 +10,8 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private boolean winterOperation = false;
+	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    ScheduledFuture<?> future;
 
 	@Override
 	public void followSpeed() {
@@ -52,6 +56,9 @@ public class TrainControllerImpl implements TrainController {
 		}
 
 		this.step = joystickPosition;
+		future.cancel(true);
+		future = executor
+        .schedule(followSpeed(), 5, TimeUnit.SECONDS);
 	}
 
 	public void setWinterOperation (boolean _winterOperation) {
