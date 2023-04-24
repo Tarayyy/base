@@ -22,24 +22,24 @@ public class TrainSensorTest {
 
     @Test
     public void setSpeedLimitNoAlarm() {
-        when(mockTC.getReferenceSpeed()).return(50);
-        when(mockTC.setAlarmState(true)).return(void);
+        when(mockTC.getReferenceSpeed()).thenReturn(50);
+        when(mockTC.setAlarmState(true)).thenReturn(void);
         sensor.setSpeedLimit(55);
         verify(mockTC, times(0)).setAlarmState(true);
     }
 
     @Test
     public void setSpeedLimitNegativeAlarm() {
-        when(mockTC.getReferenceSpeed()).return(50);
-        when(mockTC.setAlarmState(true)).return(void);
+        when(mockTC.getReferenceSpeed()).thenReturn(50);
+        when(mockTC.setAlarmState(true)).thenReturn(void);
         sensor.setSpeedLimit(-1);
         verify(mockTC, times(1)).setAlarmState(true);
     }
 
     @Test
     public void setSpeedLimitTooHighAlarm() {
-        when(mockTC.getReferenceSpeed()).return(50);
-        when(mockTC.setAlarmState(true)).return(void);
+        when(mockTC.getReferenceSpeed()).thenReturn(50);
+        when(mockTC.setAlarmState(true)).thenReturn(void);
         sensor.setSpeedLimit(600);
         verify(mockTC, times(1)).setAlarmState(true);
     }
@@ -47,8 +47,8 @@ public class TrainSensorTest {
 
     @Test
     public void setSpeedLimitRelativeTooLowAlarm() {
-        when(mockTC.getReferenceSpeed()).return(150);
-        when(mockTC.setAlarmState(true)).return(void);
+        when(mockTC.getReferenceSpeed()).thenReturn(150);
+        when(mockTC.setAlarmState(true)).thenReturn(void);
         sensor.setSpeedLimit(50);
         verify(mockTC, times(1)).setAlarmState(true);
     }
