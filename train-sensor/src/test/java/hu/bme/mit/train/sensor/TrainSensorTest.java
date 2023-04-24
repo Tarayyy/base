@@ -23,34 +23,30 @@ public class TrainSensorTest {
     @Test
     public void setSpeedLimitNoAlarm() {
         when(mockTC.getReferenceSpeed()).thenReturn(50);
-        doNothing().when(mockTC).setAlarmState(true);
         sensor.overrideSpeedLimit(55);
-        verify(mockTC, times(0)).setAlarmState(true);
+        verify(mockTU, times(1)).setAlarmState(false);
     }
 
     @Test
     public void setSpeedLimitNegativeAlarm() {
         when(mockTC.getReferenceSpeed()).thenReturn(50);
-        doNothing().when(mockTC).setAlarmState(true);
         sensor.overrideSpeedLimit(-1);
-        verify(mockTC, times(1)).setAlarmState(true);
+        verify(mockTU, times(1)).setAlarmState(true);
     }
 
     @Test
     public void setSpeedLimitTooHighAlarm() {
         when(mockTC.getReferenceSpeed()).thenReturn(50);
-        doNothing().when(mockTC).setAlarmState(true);
         sensor.overrideSpeedLimit(600);
-        verify(mockTC, times(1)).setAlarmState(true);
+        verify(mockTU, times(1)).setAlarmState(true);
     }
 
 
     @Test
     public void setSpeedLimitRelativeTooLowAlarm() {
         when(mockTC.getReferenceSpeed()).thenReturn(150);
-        doNothing().when(mockTC).setAlarmState(true);
         sensor.overrideSpeedLimit(50);
-        verify(mockTC, times(1)).setAlarmState(true);
+        verify(mockTU, times(1)).setAlarmState(true);
     }
 
 }

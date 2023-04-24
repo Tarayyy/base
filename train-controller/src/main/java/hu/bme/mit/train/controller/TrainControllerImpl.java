@@ -10,7 +10,6 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private boolean winterOperation = false;
-	private boolean alarmState = false;
 	public TrainControllerImpl() {
 		Timer t = new Timer( );
 		t.scheduleAtFixedRate(new TimerTask() {
@@ -69,12 +68,5 @@ public class TrainControllerImpl implements TrainController {
 
 	public void setWinterOperation (boolean winterOperation) {
 		this.winterOperation = winterOperation;
-	}
-	public void setAlarmState(boolean alarmState) {
-		this.alarmState = alarmState;
-	}
-
-	public boolean getAlarmState() {
-		return alarmState;
 	}
 }
