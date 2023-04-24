@@ -1,6 +1,8 @@
 package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TrainControllerImpl implements TrainController {
 
@@ -8,6 +10,17 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private boolean winterOperation = false;
+
+	public TrainControllerImpl() {
+		Timer t = new Timer( );
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				followSpeed();
+			}
+		}, 1000,5000);
+	}
 
 	@Override
 	public void followSpeed() {
@@ -57,5 +70,4 @@ public class TrainControllerImpl implements TrainController {
 	public void setWinterOperation (boolean _winterOperation) {
 		winterOperation = _winterOperation;
 	}
-
 }
